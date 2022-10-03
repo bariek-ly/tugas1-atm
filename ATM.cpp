@@ -2,7 +2,7 @@
 using namespace std;
 
 int PIN, saldo, inputPIN, nominalTarik, rekeningTujuan, nominalTransfer, nominalSedekah;
-char pilihanMenu;
+char inputPilihanMenu, pilihanMenu;
 bool mengulangMenu;
 
 int main(){
@@ -11,17 +11,28 @@ int main(){
     cout << "SELAMAT DATANG DI MESIN ATM PENGGANDA UANG" << endl;
     cout << "\nSILAKAN MASUKKAN KARTU ATM ANDA" << endl;
 
-    cout << "\n \nSebelum menggunakan kartu Anda, silakan setting terlebih dahulu PIN ATM Anda." << endl;
+    cout << "\nSebelum menggunakan kartu Anda, silakan setting terlebih dahulu PIN ATM Anda." << endl;
     cout << "Masukkan 6 Digit Angka PIN Baru Anda : " << endl;
     cin >> PIN;
 
-    cout << "\nMasukkan Jumlah Saldo Anda : " << endl;
+    cout << "Masukkan Jumlah Saldo Anda : " << endl;
     cin >> saldo;
 
+    cout << "====================================================================================== \n" << endl;
 
+
+    short wrongPIN = 0;
     do {
         cout << "MASUKKAN PIN ANDA DENGAN BENAR: " << endl;
         cin >> inputPIN;
+        if (inputPIN != PIN){
+            wrongPIN++;
+            cout << "PIN yang Anda masukkan Salah"<< endl;
+            if (wrongPIN == 3){
+                cout << "Maaf, Kartu Anda terblokir, Silakan datang ke Kantor Terdekat"<< endl;
+                goto exitLabel;
+            }
+        }
     } while (inputPIN != PIN);
 
     do {
@@ -82,11 +93,13 @@ int main(){
                 cout << "Masukkan Kode dengan benar" << endl;
         }
 
+        char inputInginMengulang;
         char inginMengulang;
         do {
             cout << "Apakah Anda ingin melakukan transaksi lain? (Y/N)" << endl;
 
-            cin >> inginMengulang;
+            cin >> inputInginMengulang;
+            inginMengulang = toupper(inputInginMengulang);
 
             if (inginMengulang == 'Y'){
                 mengulangMenu = true;
@@ -96,8 +109,7 @@ int main(){
         } while (inginMengulang != 'Y' && inginMengulang != 'N');
 
     } while (mengulangMenu);
-
-    exitlabel:
+   exitlabel:
     cout << "Silakan Ambil Kartu Anda, Terima Kasih" << endl;
 
     return 0;
