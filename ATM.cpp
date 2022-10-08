@@ -88,7 +88,7 @@ int main(){
                 }
                 break;
             case 'X':
-                goto exitlabel;
+                goto exitLabel;
             default:
                 cout << "Masukkan Kode dengan benar" << endl;
         }
@@ -109,7 +109,7 @@ int main(){
         } while (inginMengulang != 'Y' && inginMengulang != 'N');
 
     } while (mengulangMenu);
-   exitlabel:
+   exitLabel:
     cout << "Silakan Ambil Kartu Anda, Terima Kasih" << endl;
 
     return 0;
